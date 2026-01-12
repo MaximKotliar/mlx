@@ -81,4 +81,12 @@ device_info() {
   return device_info_;
 }
 
+int max_command_buffer_count() {
+  return device(default_device()).get_max_command_buffer_count();
+}
+
+void set_max_command_buffer_count(int count) {
+  device(default_device()).set_max_command_buffer_count(count);
+}
+
 } // namespace mlx::core::metal

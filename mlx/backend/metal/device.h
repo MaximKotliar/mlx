@@ -165,6 +165,14 @@ class Device {
     return arch_gen_;
   }
 
+  int get_max_command_buffer_count() const {
+    return max_command_buffer_count_;
+  }
+
+  void set_max_command_buffer_count(int count) {
+    max_command_buffer_count_ = count;
+  }
+
   void new_queue(int index);
 
   MTL::CommandQueue* get_queue(Stream stream);
@@ -259,6 +267,7 @@ class Device {
   int arch_gen_;
   int max_ops_per_buffer_;
   int max_mb_per_buffer_;
+  int max_command_buffer_count_{-1};
 };
 
 Device& device(mlx::core::Device);

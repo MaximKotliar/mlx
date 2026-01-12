@@ -19,4 +19,12 @@ void stop_capture();
 const std::unordered_map<std::string, std::variant<std::string, size_t>>&
 device_info();
 
+/** Get the maximum command buffer count for command queues.
+ * Returns -1 if not set (uses Metal default). */
+int max_command_buffer_count();
+
+/** Set the maximum command buffer count for command queues.
+ * Set to -1 to use Metal default (unlimited). */
+void set_max_command_buffer_count(int count);
+
 } // namespace mlx::core::metal

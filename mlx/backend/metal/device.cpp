@@ -364,7 +364,12 @@ Device::~Device() {
 
 void Device::new_queue(int index) {
   auto thread_pool = metal::new_scoped_memory_pool();
-  auto q = device_->newCommandQueue();
+  MTL::CommandQueue* q;
+  if (max_command_buffer_count_ >= 0) {
+    q = device_->newCommandQueue(max_command_buffer_count_);
+  } else {
+    q = device_->newCommandQueue();
+  }
   debug_set_stream_queue_label(q, index);
   if (!q) {
     throw std::runtime_error(
